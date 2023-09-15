@@ -10,15 +10,11 @@ public class Main {
         while (x != 1) {
             if (x % 2 != 0) {
                 isPowerOfTwo = false;
+                break;
             }
             x /= 2;
         }
-        if (isPowerOfTwo) {
-            System.out.print(true);
-        }
-        else {
-            System.out.print(false);
-        }
+        System.out.print(isPowerOfTwo);
     }
 
     public static void ex2() { // Вывести первые 12 членов последовательности Фибоначчи
@@ -100,9 +96,9 @@ public class Main {
         if (ip.length != 4) {
             return false;
         }
-        for (int i = 0; i < ip.length; ++i) {
-            for (int j = 0; j < ip[i].length(); ++j) {
-                if (!(ip[i].charAt(j) >= 48 && ip[i].charAt(j) <= 57 && Integer.parseInt(ip[i]) <= 255)) {
+        for (String s : ip) {
+            for (int j = 0; j < s.length(); ++j) {
+                if (!(s.charAt(j) >= 48 && s.charAt(j) <= 57 && Integer.parseInt(s) <= 255)) {
                     return false;
                 }
             }
@@ -110,7 +106,18 @@ public class Main {
         return true;
     }
 
-    public static void main(String[] args) throws IOException {
-        Vector v = new Vector(10, 5, 4);
+    public static void main(String[] args) {
+//        Vector v1 = new Vector(10, 5, 4);     //      Для задания 8
+//        Vector v2 = new Vector(5, 5, 4);
+//        System.out.println(Vector.vectorProduct(v1, v2));
+
+//        Student student = new Student("Utin", "Fedor", 5, 4);     //      Для задания 10
+//        System.out.println(student.getScholarship());
+//        student.addGrade(3);
+//        System.out.println(student.getScholarship());
+//        PostGraduateStudent postGraduateStudent = new PostGraduateStudent("Utin", "Fedor", 5, 4);
+//        System.out.println(postGraduateStudent.getScholarship());
+//        postGraduateStudent.addGrade(3);
+//        System.out.println(postGraduateStudent.getScholarship());
     }
 }

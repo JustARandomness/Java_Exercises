@@ -1,7 +1,7 @@
 class Vector {  // Задание 8, создать класс вектор и сделать методы для вычисления длины, скалярного и векторного произведения, а также суммы и разности
-    private double x = 0;
-    private double y = 0;
-    private double z = 0;
+    private double x;
+    private double y;
+    private double z;
 
     Vector(double x_value, double y_value, double z_value) {
         this.x = x_value;
@@ -14,18 +14,18 @@ class Vector {  // Задание 8, создать класс вектор и �
     }
 
     public static double scalarProduct(Vector v1, Vector v2) {
-        return (v1.x * v2.x + v1.y + v2.y + v1.z + v2.z);
+        return (v1.x * v2.x + v1.y * v2.y + v1.z + v2.z);
     }
 
-    public Vector vectorProduct(Vector v1, Vector v2) {
+    public static Vector vectorProduct(Vector v1, Vector v2) {
         return new Vector(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
     }
 
-    public Vector sum(Vector v1, Vector v2) {
+    public static Vector sum(Vector v1, Vector v2) {
         return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
     }
 
-    public Vector subtraction(Vector v1, Vector v2) {
+    public static Vector subtraction(Vector v1, Vector v2) {
         return new Vector(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
     }
 

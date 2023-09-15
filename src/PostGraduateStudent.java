@@ -1,5 +1,5 @@
 class PostGraduateStudent extends Student {
-    PostGraduateStudent(String name_value, String surname_value, double avgScore_value, int totalGrades_value) {
+    PostGraduateStudent(String surname_value, String name_value, double avgScore_value, int totalGrades_value) {
         super(name_value, surname_value, avgScore_value, totalGrades_value);
     }
 

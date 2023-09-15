@@ -11,7 +11,7 @@ class Student { // Задание 9
         avgScore = 0;
     }
 
-    Student(String name_value, String surname_value, double avgScore_value, int totalGrades_value) {
+    Student(String surname_value, String name_value, double avgScore_value, int totalGrades_value) {
         this.name = name_value;
         this.surname = surname_value;
         this.avgScore = avgScore_value;
