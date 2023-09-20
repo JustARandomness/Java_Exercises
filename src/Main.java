@@ -119,5 +119,12 @@ public class Main {
 //        System.out.println(postGraduateStudent.getScholarship());
 //        postGraduateStudent.addGrade(3);
 //        System.out.println(postGraduateStudent.getScholarship());
+
+//        try {     // Для задания 11
+//            ClassWithException.getException();
+//        }
+//        catch (MyException e) {
+//            System.out.println(e.getMessage());
+//        }
     }
 }
