@@ -1,5 +1,8 @@
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.math.*;
 
 public class Main {
@@ -106,6 +109,37 @@ public class Main {
         return true;
     }
 
+    public static void ex14() {
+        Scanner in = new Scanner(System.in);
+        String[] ArrayList = new String[5];
+        int min = 2000000;
+        for (int i = 0; i < 5; ++i) {
+            ArrayList[i] = in.nextLine();
+            if (ArrayList[i].length() < min) {
+                min = ArrayList[i].length();
+            }
+        }
+        for (String s : ArrayList) {
+            if (s.length() == min) {
+                System.out.println(s);
+            }
+        }
+    }
+
+    public static void removeStudentsWithLowAverage(List<StudentEx15> students) {
+        Iterator<StudentEx15> iterator = students.iterator();
+        while (iterator.hasNext()) {
+            StudentEx15 student = iterator.next();
+            double avgGrade = student.getAvgScore();
+            if (avgGrade < 3) {
+                iterator.remove();
+            }
+            else {
+                student.increaseYear();
+            }
+        }
+    }
+
     public static void main(String[] args) {
 //        Vector v1 = new Vector(10, 5, 4);     //      Для задания 8
 //        Vector v2 = new Vector(5, 5, 4);
@@ -126,5 +160,30 @@ public class Main {
 //        catch (MyException e) {
 //            System.out.println(e.getMessage());
 //        }
+
+        List<StudentEx15> students = new ArrayList<>();
+        List<Double> grades1 = new ArrayList<>();
+        grades1.add(3.0);
+        grades1.add(2.6);
+        grades1.add(2.8);
+
+        List<Double> grades2 = new ArrayList<>();
+        grades2.add(3.5);
+        grades2.add(4.0);
+        grades2.add(5.0);
+
+        StudentEx15 student1 = new StudentEx15("Jack", 3, 215, grades2);
+        StudentEx15 student2 = new StudentEx15("Bob", 3, 234, grades1);
+        StudentEx15 student3 = new StudentEx15("Carl", 3, 276, grades2);
+
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
+
+        System.out.println(students);
+
+        removeStudentsWithLowAverage(students);
+
+        System.out.println(students);
     }
 }

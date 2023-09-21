@@ -2,13 +2,13 @@ class Student { // Задание 9
     protected String name;
     protected String surname;
     protected double avgScore;
-
     protected int totalGrades;
 
     Student() {
-        name = "Unidentified";
-        surname = "Unidentified";
-        avgScore = 0;
+        this.name = "Unidentified";
+        this.surname = "Unidentified";
+        this.avgScore = 0;
+        this.totalGrades = 0;
     }
 
     Student(String surname_value, String name_value, double avgScore_value, int totalGrades_value) {
@@ -28,5 +28,9 @@ class Student { // Задание 9
             return 80;
         }
         return 40;
+    }
+
+    public String toString() {
+        return "Name and Surname: " + this.name + " " + this.surname + " | Average score: " + this.avgScore;
     }
 }
