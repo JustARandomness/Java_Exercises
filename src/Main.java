@@ -80,6 +80,9 @@ public class Main {
         for (String word : words) {
             int l = word.length();
             boolean hasOnlyLatinLetters = true;
+            if (l == 0) {
+                hasOnlyLatinLetters = false;
+            }
             for (int i = 0; i < l; ++i) {
                 if (!(((int) word.charAt(i) >= 65 && (int) word.charAt(i) <= 90) || ((int) word.charAt(i) >= 97 && (int) word.charAt(i) <= 122))) {
                     hasOnlyLatinLetters = false;
@@ -141,6 +144,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+//        System.out.print(ex7());
 //        Vector v1 = new Vector(10, 5, 4);     //      Для задания 8
 //        Vector v2 = new Vector(5, 5, 4);
 //        System.out.println(Vector.vectorProduct(v1, v2));
@@ -161,29 +165,39 @@ public class Main {
 //            System.out.println(e.getMessage());
 //        }
 
-        List<StudentEx15> students = new ArrayList<>();
-        List<Double> grades1 = new ArrayList<>();
-        grades1.add(3.0);
-        grades1.add(2.6);
-        grades1.add(2.8);
+//        List<StudentEx15> students = new ArrayList<>();       // Для задания 15
+//        List<Double> grades1 = new ArrayList<>();
+//        grades1.add(3.0);
+//        grades1.add(2.6);
+//        grades1.add(2.8);
+//
+//        List<Double> grades2 = new ArrayList<>();
+//        grades2.add(3.5);
+//        grades2.add(4.0);
+//        grades2.add(5.0);
+//
+//        StudentEx15 student1 = new StudentEx15("Jack", 3, 215, grades2);
+//        StudentEx15 student2 = new StudentEx15("Bob", 3, 234, grades1);
+//        StudentEx15 student3 = new StudentEx15("Carl", 3, 276, grades2);
+//
+//        students.add(student1);
+//        students.add(student2);
+//        students.add(student3);
+//
+//        System.out.println(students);
+//
+//        removeStudentsWithLowAverage(students);
+//
+//        System.out.println(students);
 
-        List<Double> grades2 = new ArrayList<>();
-        grades2.add(3.5);
-        grades2.add(4.0);
-        grades2.add(5.0);
-
-        StudentEx15 student1 = new StudentEx15("Jack", 3, 215, grades2);
-        StudentEx15 student2 = new StudentEx15("Bob", 3, 234, grades1);
-        StudentEx15 student3 = new StudentEx15("Carl", 3, 276, grades2);
-
-        students.add(student1);
-        students.add(student2);
-        students.add(student3);
-
-        System.out.println(students);
-
-        removeStudentsWithLowAverage(students);
-
-        System.out.println(students);
+//        PublicTransport v = new Tram(20);     // Для задания 10
+//        System.out.println(v.getCurrentStop());
+//        v.move();
+//        System.out.println(v.getCurrentStop());
+//        v.move();
+//        System.out.println(v.getCurrentStop());
+//        v.move();
+//        System.out.println(v.currentStop);
+//        System.out.println(v.getCurrentStop());
     }
 }
