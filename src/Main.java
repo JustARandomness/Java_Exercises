@@ -1,9 +1,13 @@
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Arrays;
 import java.math.*;
+import java.io.File;
 
 public class Main {
     public static void ex1() { // Проверить, является ли число степенью двойки
@@ -112,7 +116,7 @@ public class Main {
         return true;
     }
 
-    public static void ex14() {
+    public static void ex14() {     // Считывает 5 строк и выводит самую короткую
         Scanner in = new Scanner(System.in);
         String[] ArrayList = new String[5];
         int min = 2000000;
@@ -143,13 +147,42 @@ public class Main {
         }
     }
 
+    public static void printStudents(List<StudentEx15> students, int year) {
+        for (StudentEx15 s : students) {
+            if (s.getYear() == year) {
+                System.out.println(s.getName());
+            }
+        }
+    }
+
+    public static int[][] getMatrix() {
+        try {
+            String[] fileLines = Files.readAllLines(Paths.get("src/matrix.txt")).toArray(new String[0]);
+            int size = fileLines.length;
+            int[][] matrix = new int[size][size];
+
+            for (int i = 0; i < size; ++i) {
+                String[] matrixElements = fileLines[i].split("\\s");
+                for (int j = 0; j < size; ++j) {
+                    matrix[i][j] = Integer.parseInt(matrixElements[j]);
+                }
+            }
+
+            return matrix;
+        }
+        catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
 //        System.out.print(ex7());
 //        Vector v1 = new Vector(10, 5, 4);     //      Для задания 8
 //        Vector v2 = new Vector(5, 5, 4);
 //        System.out.println(Vector.vectorProduct(v1, v2));
 
-//        Student student = new Student("Utin", "Fedor", 5, 4);     //      Для задания 10
+//        Student student = new Student("Utin", "Fedor", 5, 4);     //      Для задания 9
 //        System.out.println(student.getScholarship());
 //        student.addGrade(3);
 //        System.out.println(student.getScholarship());
@@ -176,8 +209,8 @@ public class Main {
 //        grades2.add(4.0);
 //        grades2.add(5.0);
 //
-//        StudentEx15 student1 = new StudentEx15("Jack", 3, 215, grades2);
-//        StudentEx15 student2 = new StudentEx15("Bob", 3, 234, grades1);
+//        StudentEx15 student1 = new StudentEx15("Jack", 1, 215, grades2);
+//        StudentEx15 student2 = new StudentEx15("Bob", 2, 234, grades1);
 //        StudentEx15 student3 = new StudentEx15("Carl", 3, 276, grades2);
 //
 //        students.add(student1);
@@ -185,6 +218,8 @@ public class Main {
 //        students.add(student3);
 //
 //        System.out.println(students);
+//
+//        printStudents(students, 3);
 //
 //        removeStudentsWithLowAverage(students);
 //
@@ -199,5 +234,16 @@ public class Main {
 //        v.move();
 //        System.out.println(v.currentStop);
 //        System.out.println(v.getCurrentStop());
+
+//        try (MyResource resource1 = new MyResource("resource1");      // Для задания 13
+//             MyResource resource2 = new MyResource("resource2")) {
+//            resource1.act();
+//            resource2.act();
+//        }
+//        catch (Exception e) {
+//            System.err.println(e.getMessage());
+//        }
+
+        System.out.println(Arrays.deepToString(getMatrix()));
     }
 }
