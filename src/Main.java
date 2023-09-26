@@ -1,13 +1,10 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Arrays;
+import java.util.*;
 import java.math.*;
 import java.io.File;
+import java.util.function.UnaryOperator;
 
 public class Main {
     public static void ex1() { // Проверить, является ли число степенью двойки
@@ -176,6 +173,40 @@ public class Main {
         return null;
     }
 
+    public static void addElementsToList(List<Integer> list, int elementsCount) {
+        for (int i =0; i < elementsCount; ++i) {
+            list.add(i + 1);
+        }
+    }
+
+    public static long measureTime(List<Integer> list, int randomNumCount) {
+        Random random = new Random();
+        long start = System.currentTimeMillis();
+
+        for (int i = 0; i < randomNumCount; ++i) {
+            int element = list.get(random.nextInt(list.size()));
+        }
+
+        long end = System.currentTimeMillis();
+        return end - start;
+    }
+
+    public static void readSequence() {     // Для задания 19
+        Scanner in = new Scanner(System.in);
+        String[] numbers = in.nextLine().split("\\s");
+        ArrayDeque<Integer> q = new ArrayDeque<>();
+        int i = 1;
+        while (i < numbers.length) {
+            q.add(Integer.parseInt(numbers[i]));
+            i += 2;
+        }
+        Iterator<Integer> iterator = q.descendingIterator();
+        System.out.print(iterator.next());
+        while (iterator.hasNext()) {
+            System.out.print(" " + iterator.next());
+        }
+    }
+
     public static void main(String[] args) {
 //        System.out.print(ex7());
 //        Vector v1 = new Vector(10, 5, 4);     //      Для задания 8
@@ -244,6 +275,19 @@ public class Main {
 //            System.err.println(e.getMessage());
 //        }
 
-        System.out.println(Arrays.deepToString(getMatrix()));
+//        System.out.println(Arrays.deepToString(getMatrix()));
+
+//        List<Integer> arrayList = new ArrayList<>();      // Для задания 18
+//        List<Integer> list = new LinkedList<>();
+//        addElementsToList(list, 500000);
+//        addElementsToList(arrayList, 500000);
+//        System.out.println("ArrayList: " + measureTime(arrayList, 100000));
+//        System.out.println("LinkedList: " + measureTime(list, 100000));
+
+//        readSequence();       // Для задания 19
+
+//        UnaryOperator<Integer> squareOperator = SquareOperator.getSquareOperator();       // Для задания 20
+//        int number = 15;
+//        System.out.println("Square of " + number + " is: " + squareOperator.apply(number));
     }
 }
