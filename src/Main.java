@@ -1,9 +1,11 @@
+import javax.print.DocFlavor;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.math.*;
 import java.io.File;
+import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 public class Main {
@@ -80,10 +82,7 @@ public class Main {
         int wordCnt = 0;
         for (String word : words) {
             int l = word.length();
-            boolean hasOnlyLatinLetters = true;
-            if (l == 0) {
-                hasOnlyLatinLetters = false;
-            }
+            boolean hasOnlyLatinLetters = l != 0;
             for (int i = 0; i < l; ++i) {
                 if (!(((int) word.charAt(i) >= 65 && (int) word.charAt(i) <= 90) || ((int) word.charAt(i) >= 97 && (int) word.charAt(i) <= 122))) {
                     hasOnlyLatinLetters = false;
@@ -165,6 +164,14 @@ public class Main {
                 }
             }
 
+            for (int i = 0; i < size; ++i) {
+                System.out.print(matrix[0][i]);
+                for (int j = 1; j < size; ++j) {
+                    System.out.print(" " + matrix[j][i]);
+                }
+                System.out.print('\n');
+            }
+
             return matrix;
         }
         catch (IOException e) {
@@ -207,8 +214,56 @@ public class Main {
         }
     }
 
+    public static <T> List<T> removeDuplicates(Collection<T> collection) {
+        Set<T> set = new LinkedHashSet<T>(collection);
+        return new ArrayList<T>(set);
+    }
+
+    public static <T, R> List<R> removeElements(T[] array, Function<T, R> mapper) {
+        List<R> result = new ArrayList<R>();
+        for (T element : array) {
+            R mappedElement = mapper.apply(element);
+            if (mappedElement != null) {
+                result.add(mappedElement);
+            }
+        }
+        return result;
+    }
+
+    public static <T> Map<T, Integer> countElements(T[] array) {
+        Map<T, Integer> elements_count = new HashMap<>();
+        for (T element : array) {
+            elements_count.put(element, elements_count.getOrDefault(element, 0) + 1);
+        }
+        return elements_count;
+    }
+
+    public static <T, R> Map<R, T> swapKeysAndValues(Map<T, R> map) {
+        Map<R, T> swappedMap = new HashMap<>();
+        for (Map.Entry<T, R> entry : map.entrySet()) {
+            T key = entry.getKey();
+            R value = entry.getValue();
+            if (swappedMap.containsKey(value)) {
+                T existingKey = swappedMap.get(value);
+                if (existingKey instanceof List) {
+                    ((List<T>)existingKey).add(key);
+                }
+                else {
+                    List<T> keyList = new ArrayList<>();
+                    keyList.add(existingKey);
+                    keyList.add(key);
+                    swappedMap.put(value, (T) keyList);
+                }
+            }
+            else {
+                swappedMap.put(value, key);
+            }
+            swappedMap.put(value, key);
+        }
+        return swappedMap;
+    }
+
     public static void main(String[] args) {
-//        System.out.print(ex7());
 //        Vector v1 = new Vector(10, 5, 4);     //      Для задания 8
 //        Vector v2 = new Vector(5, 5, 4);
 //        System.out.println(Vector.vectorProduct(v1, v2));
@@ -275,7 +330,7 @@ public class Main {
 //            System.err.println(e.getMessage());
 //        }
 
-//        System.out.println(Arrays.deepToString(getMatrix()));
+//        System.out.println(Arrays.deepToString(getMatrix()));     // Для задания 17
 
 //        List<Integer> arrayList = new ArrayList<>();      // Для задания 18
 //        List<Integer> list = new LinkedList<>();
@@ -284,10 +339,47 @@ public class Main {
 //        System.out.println("ArrayList: " + measureTime(arrayList, 100000));
 //        System.out.println("LinkedList: " + measureTime(list, 100000));
 
+//        List<Double> arrayList = new ArrayList<>();      // Для задания 16
+//        arrayList.add(2.0);
+//        arrayList.add(4.0);
+//        arrayList.add(1.0);
+//        arrayList.add(2.0);
+//        arrayList.add(4.0);
+//        arrayList.add(2.0);
+//        System.out.println(removeDuplicates(arrayList));
+
 //        readSequence();       // Для задания 19
 
 //        UnaryOperator<Integer> squareOperator = SquareOperator.getSquareOperator();       // Для задания 20
 //        int number = 15;
 //        System.out.println("Square of " + number + " is: " + squareOperator.apply(number));
+
+//        Integer[] numArray = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12};        // Для задания 21
+//        String[] strArray = {"ahdbvkjasdkj1", "hello12", "Hello, World!", "sdkfjbvjsdhfbv", "agdhgcvasdvja", "1254gdhgvah134dgvc"};
+//        System.out.println(removeElements(numArray, number -> {
+//            if (number % 2 == 0) {
+//                return number;
+//            }
+//            return null;
+//        }));
+//        System.out.println(removeElements(strArray, str -> {
+//            for (char c : str.toCharArray()) {
+//                if (Character.isDigit(c)) {
+//                    return null;
+//                }
+//            }
+//            return str;
+//        }));
+
+//        Integer[] array = {1, 1, 2, 3, 4, 4, 5, 5, 5, 6, 8, 9, 9};        // Для задания 22
+//        System.out.println(countElements(array));
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("one", 1);
+        map.put("two", 2);
+        map.put("three", 3);
+        map.put("four", 2);
+        Map<Integer, String> swappedMap = swapKeysAndValues(map);
+        System.out.println(swappedMap);
     }
 }
